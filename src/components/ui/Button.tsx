@@ -27,7 +27,7 @@ export function Button({
   ...props
 }: ButtonProps) {
   const baseStyles =
-    "inline-flex items-center justify-center font-medium transition-all duration-300 rounded-full focus:outline-none focus:ring-2 focus:ring-ember focus:ring-offset-2 focus:ring-offset-base active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none group select-none";
+    "inline-flex items-center justify-center font-medium transition-all duration-300 rounded-full focus:outline-none focus:ring-2 focus:ring-ember focus:ring-offset-2 focus:ring-offset-darkbase active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none group select-none";
 
   const sizeStyles = {
     sm: "text-xs px-4 py-2 gap-1.5",
@@ -37,14 +37,14 @@ export function Button({
 
   const variantStyles = {
     primary:
-      "bg-gradient-to-r from-ember via-flame to-gold text-base font-bold shadow-ember hover:shadow-ember-lg hover:brightness-110",
+      "bg-gradient-to-r from-ember via-flame to-gold text-darkbase font-bold shadow-ember hover:shadow-ember-lg hover:brightness-110",
     secondary:
       "bg-surface text-smoke hover:bg-surface-hover hover:text-white border border-surface-border hover:border-ember/40",
     outline:
       "bg-transparent text-smoke-white border border-ember/30 hover:border-ember hover:bg-ember/10 hover:shadow-ember-sm",
     ghost: "bg-transparent text-ash-light hover:text-smoke-white hover:bg-surface/50",
     emberGlow:
-      "bg-surface text-white border border-ember/50 shadow-ember hover:bg-ember hover:text-base hover:shadow-ember-lg",
+      "bg-surface text-white border border-ember/50 shadow-ember hover:bg-ember hover:text-darkbase hover:shadow-ember-lg",
   };
 
   const combinedClassName = cn(
@@ -70,7 +70,7 @@ export function Button({
 
   if (href) {
     return (
-      <Link href={href} className={combinedClassName}>
+      <Link href={href} prefetch={true} className={combinedClassName}>
         {content}
       </Link>
     );

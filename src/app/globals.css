@@ -13,23 +13,46 @@
     scroll-behavior: smooth;
     color-scheme: dark;
     background-color: #0C0A09;
-    color: #F5F5F4;
+    color: #FFFFFF;
     selection-background-color: #F2660A;
-    selection-color: #FAFAF9;
+    selection-color: #FFFFFF;
   }
 
   ::selection {
     background-color: #F2660A;
-    color: #FAFAF9;
+    color: #FFFFFF;
   }
 
   body {
     background-color: #0C0A09;
-    color: #F5F5F4;
+    color: #FFFFFF;
     overflow-x: hidden;
     font-family: var(--font-inter);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Universal high-contrast readability */
+  p {
+    color: #E2E8F0;
+  }
+
+  .text-ash {
+    color: #E2E8F0 !important;
+  }
+
+  .text-ash-dark {
+    color: #CBD5E1 !important;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    color: #FFFFFF;
+  }
+
+  html.custom-cursor-enabled,
+  html.custom-cursor-enabled * {
+    cursor: none !important;
   }
 }
 
@@ -46,7 +69,7 @@
 ::-webkit-scrollbar-thumb {
   background: #26201C;
   border-radius: 4px;
-  border: 1px solid rgba(242, 102, 10, 0.2);
+  border: 1px solid rgba(242, 102, 10, 0.25);
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -55,43 +78,65 @@
 
 /* Glassmorphism & Cyber Glow utilities */
 .glass-panel {
-  background: rgba(26, 22, 20, 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(242, 102, 10, 0.12);
+  background: rgba(26, 22, 20, 0.75);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(242, 102, 10, 0.16);
 }
 
 .glass-panel-hover {
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-panel-hover:hover {
-  border-color: rgba(242, 102, 10, 0.4);
-  box-shadow: 0 0 30px -5px rgba(242, 102, 10, 0.25);
-  transform: translateY(-2px);
+  border-color: rgba(242, 102, 10, 0.5);
+  box-shadow: 0 10px 40px -10px rgba(242, 102, 10, 0.3);
+  transform: translateY(-4px);
+}
+
+/* 3D Scene & Perspective */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
 }
 
 .text-gradient-ember {
-  background: linear-gradient(135deg, #FFF 10%, #FF8A1E 60%, #F2660A 100%);
+  background: linear-gradient(135deg, #FFFFFF 10%, #FF8A1E 60%, #F2660A 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .text-gradient-gold {
-  background: linear-gradient(135deg, #FFFFFF 20%, #FACC15 70%, #F2660A 100%);
+  background: linear-gradient(135deg, #FFFFFF 15%, #FACC15 70%, #F2660A 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .bg-grid-pattern {
-  background-size: 40px 40px;
+  background-size: 44px 44px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
 }
 
 .bg-radial-ember {
-  background: radial-gradient(circle at 50% 0%, rgba(242, 102, 10, 0.15) 0%, rgba(12, 10, 9, 0) 70%);
+  background: radial-gradient(circle at 50% 0%, rgba(242, 102, 10, 0.2) 0%, rgba(12, 10, 9, 0) 70%);
+}
+
+/* Input readability improvements */
+input, textarea, select {
+  color: #FFFFFF !important;
+}
+
+input::placeholder, textarea::placeholder {
+  color: #94A3B8 !important;
 }
 
 @media (prefers-reduced-motion: reduce) {

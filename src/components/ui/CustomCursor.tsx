@@ -1,79 +1,119 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 
 export function CustomCursor() {
-  const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
-  const [isHovering, setIsHovering] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isClicking, setIsClicking] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
+  // Exact hardware mouse position (ZERO LAG)
+  const mouseX = useMotionValue(-100);
+  const mouseY = useMotionValue(-100);
+
+  // Ultra-crisp high-stiffness spring for outer halo (zero perceptible drag)
+  const auraX = useSpring(mouseX, { damping: 36, stiffness: 850, mass: 0.02 });
+  const auraY = useSpring(mouseY, { damping: 36, stiffness: 850, mass: 0.02 });
+
   useEffect(() => {
-    // Only enable on pointer devices (exclude touch devices)
+    // Only enable on precise pointing devices
     if (window.matchMedia("(pointer: coarse)").matches) return;
 
-    const updateMousePosition = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+    document.documentElement.classList.add("custom-cursor-enabled");
+
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseX.set(e.clientX);
+      mouseY.set(e.clientY);
       if (!isVisible) setIsVisible(true);
     };
 
     const handleMouseOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
+      const target = e.target as HTMLElement | null;
+      if (!target) return;
       if (
         target.closest("a") ||
         target.closest("button") ||
         target.closest("input") ||
         target.closest("textarea") ||
-        target.closest(".interactive")
+        target.closest("select") ||
+        target.closest("[role='button']") ||
+        target.closest(".interactive") ||
+        target.closest(".cursor-pointer")
       ) {
-        setIsHovering(true);
+        setIsHovered(true);
       } else {
-        setIsHovering(false);
+        setIsHovered(false);
       }
     };
 
-    const handleMouseLeave = () => {
-      setIsVisible(false);
-    };
+    const handleMouseDown = () => setIsClicking(true);
+    const handleMouseUp = () => setIsClicking(false);
+    const handleMouseLeave = () => setIsVisible(false);
+    const handleMouseEnter = () => setIsVisible(true);
 
-    window.addEventListener("mousemove", updateMousePosition);
-    window.addEventListener("mouseover", handleMouseOver);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    window.addEventListener("mouseover", handleMouseOver, { passive: true });
+    window.addEventListener("mousedown", handleMouseDown);
+    window.addEventListener("mouseup", handleMouseUp);
     document.addEventListener("mouseleave", handleMouseLeave);
+    document.addEventListener("mouseenter", handleMouseEnter);
 
     return () => {
-      window.removeEventListener("mousemove", updateMousePosition);
+      document.documentElement.classList.remove("custom-cursor-enabled");
+      window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseover", handleMouseOver);
+      window.removeEventListener("mousedown", handleMouseDown);
+      window.removeEventListener("mouseup", handleMouseUp);
       document.removeEventListener("mouseleave", handleMouseLeave);
+      document.removeEventListener("mouseenter", handleMouseEnter);
     };
-  }, [isVisible]);
+  }, [isVisible, mouseX, mouseY]);
 
   if (!isVisible) return null;
 
   return (
-    <>
-      {/* Small precision pointer dot */}
+    <div className="pointer-events-none fixed inset-0 z-[99999] overflow-hidden select-none">
+      {/* 1. Fast, responsive flame aura ring (tracks tightly with zero perceptible lag) */}
       <motion.div
-        className="fixed top-0 left-0 w-2.5 h-2.5 bg-ember rounded-full pointer-events-none z-[9999] mix-blend-screen shadow-[0_0_12px_#FF8A1E]"
-        animate={{
-          x: mousePosition.x - 5,
-          y: mousePosition.y - 5,
-          scale: isHovering ? 0 : 1,
+        style={{
+          x: auraX,
+          y: auraY,
+          translateX: "-50%",
+          translateY: "-50%",
         }}
-        transition={{ type: "spring", damping: 30, stiffness: 400, mass: 0.1 }}
+        animate={{
+          width: isHovered ? 38 : isClicking ? 18 : 26,
+          height: isHovered ? 38 : isClicking ? 18 : 26,
+          backgroundColor: isHovered
+            ? "rgba(242, 102, 10, 0.18)"
+            : "rgba(255, 138, 30, 0.08)",
+          borderColor: isHovered
+            ? "rgba(250, 204, 21, 0.95)"
+            : "rgba(242, 102, 10, 0.55)",
+          boxShadow: isHovered
+            ? "0 0 16px rgba(250, 204, 21, 0.5)"
+            : "0 0 8px rgba(242, 102, 10, 0.25)",
+        }}
+        transition={{ duration: 0.1, ease: "linear" }}
+        className="rounded-full border backdrop-blur-[0.5px] pointer-events-none"
       />
 
-      {/* Outer ambient glow ring */}
+      {/* 2. Instant Zero-Lag Hardware Center Ember Dot */}
       <motion.div
-        className="fixed top-0 left-0 rounded-full pointer-events-none z-[9998] border border-ember/40 bg-ember/[0.06] backdrop-blur-[1px]"
-        animate={{
-          x: mousePosition.x - (isHovering ? 24 : 16),
-          y: mousePosition.y - (isHovering ? 24 : 16),
-          width: isHovering ? 48 : 32,
-          height: isHovering ? 48 : 32,
-          borderColor: isHovering ? "rgba(250, 204, 21, 0.8)" : "rgba(242, 102, 10, 0.4)",
+        style={{
+          x: mouseX,
+          y: mouseY,
+          translateX: "-50%",
+          translateY: "-50%",
         }}
-        transition={{ type: "spring", damping: 25, stiffness: 250, mass: 0.2 }}
+        animate={{
+          scale: isClicking ? 0.6 : isHovered ? 1.3 : 1,
+          backgroundColor: isHovered ? "#FACC15" : "#FF8A1E",
+        }}
+        transition={{ duration: 0.08 }}
+        className="w-1.5 h-1.5 rounded-full border border-white shadow-[0_0_8px_#F2660A] pointer-events-none"
       />
-    </>
+    </div>
   );
 }

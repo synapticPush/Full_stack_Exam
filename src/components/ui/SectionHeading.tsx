@@ -59,7 +59,7 @@ export function SectionHeading({
       </h2>
 
       {subtitle && (
-        <p className="mt-4 text-base sm:text-lg text-ash leading-relaxed font-sans max-w-2xl">
+        <p className="mt-4 text-base sm:text-lg text-slate-200 leading-relaxed font-sans max-w-2xl">
           {subtitle}
         </p>
       )}

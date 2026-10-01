@@ -10,7 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        base: "#0C0A09",
+        darkbase: "#0C0A09",
         surface: {
           DEFAULT: "#1A1614",
           subtle: "#141110",
@@ -32,13 +32,15 @@ const config: Config = {
           spark: "#FDE047",
         },
         ash: {
-          DEFAULT: "#A8A29E",
-          dark: "#78716C",
-          light: "#D6D3D1",
+          DEFAULT: "#E2E8F0", // Slate-200 crystal clear high-contrast silver
+          dark: "#CBD5E1",    // Slate-300 easily readable secondary text
+          light: "#FFFFFF",   // Pure crisp white for subheaders
+          muted: "#A1A1AA",   // Clean readable slate for badges & metadata
         },
         smoke: {
-          DEFAULT: "#F5F5F4",
-          white: "#FAFAF9",
+          DEFAULT: "#FFFFFF",
+          white: "#FFFFFF",
+          subtle: "#F1F5F9",
         },
       },
       fontFamily: {

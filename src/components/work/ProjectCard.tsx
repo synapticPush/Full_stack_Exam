@@ -6,6 +6,7 @@ import Image from "next/image";
 import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 import { ProjectData } from "@/lib/data/projects";
 import { Badge } from "../ui/Badge";
+import { Card3D } from "../ui/Card3D";
 import { cn } from "@/lib/utils";
 
 interface ProjectCardProps {
@@ -15,7 +16,8 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project, featured = false }: ProjectCardProps) {
   return (
-    <div className="group h-full flex flex-col justify-between rounded-2xl glass-panel glass-panel-hover overflow-hidden transition-all duration-300">
+    <Card3D intensity={8} className="h-full">
+      <div className="group h-full flex flex-col justify-between rounded-2xl glass-panel glass-panel-hover overflow-hidden transition-all duration-300">
       {/* Image Container with Parallax Hover */}
       <div className="relative aspect-[16/10] w-full overflow-hidden bg-surface-subtle">
         <Image
@@ -25,17 +27,17 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-base via-transparent to-transparent opacity-80" />
+        <div className="absolute inset-0 bg-gradient-to-t from-darkbase via-transparent to-transparent opacity-80" />
 
         {/* Floating Industry Badge */}
         <div className="absolute top-4 left-4 z-10">
-          <Badge variant="surface" className="backdrop-blur-md bg-base/80 border-white/10">
+          <Badge variant="surface" className="backdrop-blur-md bg-darkbase/80 border-white/10">
             {project.industryLabel}
           </Badge>
         </div>
 
         {/* Live Status Icon */}
-        <div className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-base/80 border border-white/10 flex items-center justify-center text-smoke-white group-hover:bg-ember group-hover:text-base group-hover:border-ember transition-all duration-300 shadow-lg">
+        <div className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-darkbase/80 border border-white/10 flex items-center justify-center text-smoke-white group-hover:bg-ember group-hover:text-darkbase group-hover:border-ember transition-all duration-300 shadow-lg">
           <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </div>
       </div>
@@ -45,7 +47,7 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
         <div>
           <div className="flex items-center justify-between gap-2 mb-2">
             <h3 className="text-xl sm:text-2xl font-display font-bold text-smoke-white group-hover:text-ember-light transition-colors">
-              <Link href={`/work/${project.slug}`} className="focus:outline-none">
+              <Link href={`/work/${project.slug}`} prefetch={true} className="focus:outline-none">
                 {project.title}
               </Link>
             </h3>
@@ -91,5 +93,6 @@ export function ProjectCard({ project, featured = false }: ProjectCardProps) {
         </div>
       </div>
     </div>
-  );
+  </Card3D>
+);
 }
