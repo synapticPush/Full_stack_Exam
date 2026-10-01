@@ -34,13 +34,21 @@ export async function connectToDatabase(): Promise<typeof mongoose | null> {
   if (!cached.promise) {
     const opts = {
       bufferCommands: false,
-      serverSelectionTimeoutMS: 2500, // Quick 2.5s fallback on restricted/blocked firewalls
+      serverSelectionTimeoutMS: 2000,
+      connectTimeoutMS: 2000,
     };
 
-    cached.promise = mongoose
-      .connect(MONGODB_URI, opts)
+    const connectionAttempt = mongoose.connect(MONGODB_URI, opts);
+    const hardTimeout = new Promise<null>((resolve) =>
+      setTimeout(() => {
+        console.warn("[MongoDB] Network firewall timeout (2.5s reached) — switching to resilient offline storage.");
+        resolve(null);
+      }, 2500)
+    );
+
+    cached.promise = Promise.race([connectionAttempt, hardTimeout])
       .then((m) => {
-        return m;
+        return m as typeof mongoose | null;
       })
       .catch((err) => {
         console.warn("[MongoDB] Connection warning:", err.message);
