@@ -18,8 +18,9 @@
 ---
 
 ## 🔗 Live Links
-- **Frontend / Application**: https://the-angaar-labs.vercel.app *(or local dev server http://localhost:3000)*
-- **Backend API**: `http://localhost:3000/api/v1`
+- **Frontend / Live Application**: https://full-stack-exam-gamma.vercel.app
+- **Live Backend API**: https://full-stack-exam-gamma.vercel.app/api/v1
+- **GitHub Repository**: https://github.com/synapticPush/Full_stack_Exam
 - **Demo Video**: *(Link to YouTube / Google Drive 3-5 min walkthrough)*
 
 ---
