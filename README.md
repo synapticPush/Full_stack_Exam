@@ -9,11 +9,11 @@
 ## 👥 Team
 | Name | Roll No. | GitHub | Primary Responsibility |
 | :--- | :--- | :--- | :--- |
-| **Member 1** | FS-2026-01 | @member1 | Core Architecture, Design Tokens, Base Components, Global Layout |
-| **Member 2** | FS-2026-02 | @member2 | Homepage Master Composition, Kinetic Typography, Ember Canvas |
-| **Member 3** | FS-2026-03 | @member3 | Portfolio Gallery, Dynamic Case Studies (`/work/[slug]`), Projects Repo |
-| **Member 4** | FS-2026-04 | @member4 | Brand Narrative (`/about`, `/story`, `/services`), Process Timeline |
-| **Member 5** | FS-2026-05 | @member5 | Contact Engine, Zod Validation, API Endpoints, MongoDB Models & Seed |
+| **Pushpendra Sharma** | 2415800064 | @synapticpush | Core Architecture, Design Tokens, Base Components, Global Layout |
+| **Nikhil Singh** | 2415800058 | @thakurnikhilsingh1 | Homepage Master Composition, Kinetic Typography, Ember Canvas |
+| **Navya Garg** | 2415800059 | @navya-garg1105 | Portfolio Gallery, Dynamic Case Studies (`/work/[slug]`), Projects Repo |
+| **Pratyaksh** | 2415800062 | @pratyaksh-agarwal | Brand Narrative (`/about`, `/story`, `/services`), Process Timeline |
+| **Pranshi** | 2415800061 | @pranshi34 | Contact Engine, Zod Validation, API Endpoints, MongoDB Models & Seed |
 
 ---
 
