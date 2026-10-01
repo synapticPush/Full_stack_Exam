@@ -16,13 +16,13 @@ interface RevealProps {
 export function Reveal({
   children,
   width = "100%",
-  delay = 0.1,
-  duration = 0.6,
+  delay = 0.04,
+  duration = 0.35,
   direction = "up",
   className,
 }: RevealProps) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-60px" });
+  const isInView = useInView(ref, { once: true, margin: "50px" });
 
   const getOffset = () => {
     switch (direction) {
@@ -57,7 +57,7 @@ export function Reveal({
         transition={{
           duration,
           delay,
-          ease: [0.21, 0.47, 0.32, 0.98],
+          ease: [0.16, 1, 0.3, 1],
         }}
       >
         {children}

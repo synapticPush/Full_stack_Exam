@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CustomCursor } from "@/components/ui/CustomCursor";
+import { ScrollProgress } from "@/components/ui/ScrollProgress";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -87,7 +88,8 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${plusJakarta.variable} ${jetbrainsMono.variable} dark`}
     >
-      <body className="min-h-screen flex flex-col bg-base text-smoke-white selection:bg-ember selection:text-white relative">
+      <body className="min-h-screen flex flex-col bg-darkbase text-smoke-white selection:bg-ember selection:text-white relative">
+        <ScrollProgress />
         <CustomCursor />
         <Navbar />
         <main className="flex-1 w-full pt-20 overflow-x-hidden">{children}</main>

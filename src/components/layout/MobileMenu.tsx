@@ -28,7 +28,7 @@ export function MobileMenu({
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.25, ease: "easeInOut" }}
-          className="fixed inset-0 z-40 bg-base/95 backdrop-blur-2xl md:hidden pt-24 px-6 pb-8 flex flex-col justify-between overflow-y-auto"
+          className="fixed inset-0 z-40 bg-darkbase/95 backdrop-blur-2xl md:hidden pt-24 px-6 pb-8 flex flex-col justify-between overflow-y-auto"
         >
           {/* Nav Links List */}
           <div className="flex flex-col gap-3">
@@ -46,6 +46,7 @@ export function MobileMenu({
                 >
                   <Link
                     href={link.href}
+                    prefetch={true}
                     onClick={onClose}
                     className={cn(
                       "flex items-center justify-between py-3.5 px-4 rounded-xl text-lg font-display font-medium transition-all",

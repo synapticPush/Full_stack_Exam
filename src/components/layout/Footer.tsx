@@ -39,7 +39,7 @@ export function Footer() {
           <div className="lg:col-span-2 flex flex-col items-start gap-4">
             <Link href="/" className="flex items-center gap-2.5 group">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-ember to-flame flex items-center justify-center shadow-ember">
-                <Flame className="w-5 h-5 text-base fill-base" />
+                <Flame className="w-5 h-5 text-darkbase fill-darkbase" />
               </div>
               <span className="font-display font-bold text-xl tracking-tight text-smoke-white">
                 The Angaar Labs

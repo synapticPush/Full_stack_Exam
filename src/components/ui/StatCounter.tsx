@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, useRef } from "react";
 import { useInView } from "framer-motion";
+import { Card3D } from "./Card3D";
 import { cn } from "@/lib/utils";
 
 interface StatCounterProps {
@@ -63,24 +64,26 @@ export function StatCounter({
       : Math.floor(count).toLocaleString();
 
   return (
-    <div
-      ref={ref}
-      className={cn(
-        "flex flex-col items-center sm:items-start p-6 rounded-2xl glass-panel glass-panel-hover",
-        className
-      )}
-    >
-      <div className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-gradient-ember tracking-tight">
-        <span>{prefix}</span>
-        <span>{formattedValue}</span>
-        <span>{suffix}</span>
+    <Card3D intensity={6} className="h-full">
+      <div
+        ref={ref}
+        className={cn(
+          "h-full flex flex-col items-center sm:items-start p-6 rounded-2xl glass-panel glass-panel-hover",
+          className
+        )}
+      >
+        <div className="text-3xl sm:text-4xl md:text-5xl font-display font-bold text-gradient-ember tracking-tight">
+          <span>{prefix}</span>
+          <span>{formattedValue}</span>
+          <span>{suffix}</span>
+        </div>
+        <div className="mt-2 text-base font-semibold text-smoke-white font-sans">
+          {label}
+        </div>
+        {sublabel && (
+          <div className="mt-1 text-xs text-ash font-sans">{sublabel}</div>
+        )}
       </div>
-      <div className="mt-2 text-base font-semibold text-smoke-white font-sans">
-        {label}
-      </div>
-      {sublabel && (
-        <div className="mt-1 text-xs text-ash font-sans">{sublabel}</div>
-      )}
-    </div>
+    </Card3D>
   );
 }

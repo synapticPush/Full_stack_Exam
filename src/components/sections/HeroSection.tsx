@@ -49,7 +49,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.25 }}
-          className="mt-6 text-base sm:text-xl md:text-2xl text-ash max-w-3xl leading-relaxed font-sans"
+          className="mt-6 text-base sm:text-xl md:text-2xl text-slate-100 max-w-3xl leading-relaxed font-sans font-normal"
         >
           From AI-native backends to pixel-perfect frontends — we own every layer of the stack. Zero to 100% product execution for ambitious brands.
         </motion.p>

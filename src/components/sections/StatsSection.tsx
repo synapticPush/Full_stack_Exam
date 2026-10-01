@@ -5,6 +5,7 @@ import { Container } from "../ui/Container";
 import { SectionHeading } from "../ui/SectionHeading";
 import { Reveal } from "../ui/Reveal";
 import { StatCounter } from "../ui/StatCounter";
+import { Card3D } from "../ui/Card3D";
 import { CheckCircle2, Shield, Zap, Sparkles } from "lucide-react";
 
 export function StatsSection() {
@@ -87,20 +88,22 @@ export function StatsSection() {
           {differentiators.map((d, idx) => {
             const Icon = d.icon;
             return (
-              <Reveal key={idx} delay={0.1 * idx}>
-                <div className="flex items-start gap-4 p-6 rounded-2xl bg-surface/60 border border-surface-border">
-                  <div className="w-10 h-10 rounded-xl bg-surface-subtle border border-ember/30 flex items-center justify-center text-ember shrink-0">
-                    <Icon className="w-5 h-5" />
+              <Reveal key={idx} delay={0.1 * idx} className="h-full">
+                <Card3D intensity={8} className="h-full">
+                  <div className="h-full flex items-start gap-4 p-6 rounded-2xl bg-surface/60 border border-surface-border">
+                    <div className="w-10 h-10 rounded-xl bg-surface-subtle border border-ember/30 flex items-center justify-center text-ember shrink-0">
+                      <Icon className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h3 className="text-base font-display font-bold text-smoke-white mb-2">
+                        {d.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-ash leading-relaxed font-sans">
+                        {d.desc}
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="text-base font-display font-bold text-smoke-white mb-2">
-                      {d.title}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-ash leading-relaxed font-sans">
-                      {d.desc}
-                    </p>
-                  </div>
-                </div>
+                </Card3D>
               </Reveal>
             );
           })}

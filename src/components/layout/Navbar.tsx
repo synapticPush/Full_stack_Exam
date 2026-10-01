@@ -42,7 +42,7 @@ export function Navbar() {
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4",
           isScrolled
-            ? "bg-base/80 backdrop-blur-xl border-b border-surface-border py-3 shadow-2xl"
+            ? "bg-darkbase/80 backdrop-blur-xl border-b border-surface-border py-3 shadow-2xl"
             : "bg-transparent py-5"
         )}
       >
@@ -51,11 +51,12 @@ export function Navbar() {
             {/* Logo */}
             <Link
               href="/"
+              prefetch={true}
               className="flex items-center gap-2.5 group focus:outline-none"
               aria-label="The Angaar Labs Homepage"
             >
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-ember to-flame flex items-center justify-center shadow-ember group-hover:shadow-ember-lg transition-all duration-300 group-hover:scale-105">
-                <Flame className="w-5 h-5 text-base fill-base" />
+                <Flame className="w-5 h-5 text-darkbase fill-darkbase" />
               </div>
               <div className="flex flex-col">
                 <span className="font-display font-bold text-lg sm:text-xl tracking-tight text-smoke-white leading-none group-hover:text-ember-light transition-colors">
@@ -75,6 +76,7 @@ export function Navbar() {
                   <Link
                     key={link.href}
                     href={link.href}
+                    prefetch={true}
                     className={cn(
                       "px-4 py-1.5 rounded-full text-sm font-medium transition-all duration-200 relative",
                       isActive
