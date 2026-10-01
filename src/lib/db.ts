@@ -34,7 +34,7 @@ export async function connectToDatabase(): Promise<typeof mongoose | null> {
   if (!cached.promise) {
     const opts = {
       bufferCommands: false,
-      serverSelectionTimeoutMS: 8000,
+      serverSelectionTimeoutMS: 2500, // Quick 2.5s fallback on restricted/blocked firewalls
     };
 
     cached.promise = mongoose
